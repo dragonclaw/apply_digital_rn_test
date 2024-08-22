@@ -6,7 +6,7 @@ import ArticleList from '../components/ArticleListComponent/ArticleList';
 const ArticleListScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setError] = useState(false);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   useEffect(() => {
     const fetchList = async () => {
       try {
