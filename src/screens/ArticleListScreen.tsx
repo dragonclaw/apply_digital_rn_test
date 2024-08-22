@@ -1,6 +1,7 @@
 import {Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import articles from '../services/articles/articles';
+import ArticleList from '../components/ArticleListComponent/ArticleList';
 
 const ArticleListScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,6 +14,7 @@ const ArticleListScreen = () => {
         setData(await articles.getArticles());
         setIsLoading(false);
       } catch (err) {
+        setIsLoading(false);
         setError(true);
       }
     };
@@ -28,9 +30,7 @@ const ArticleListScreen = () => {
       <Text>Error fetching the data</Text>
     </View>
   ) : (
-    <View>
-      <Text>{JSON.stringify(data)}</Text>
-    </View>
+    <ArticleList data={data} />
   );
 };
 
