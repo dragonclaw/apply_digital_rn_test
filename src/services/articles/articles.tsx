@@ -1,4 +1,4 @@
-import api from '../api';
+import api from '../../api';
 
 export default {
   getArticles: async () => {
@@ -12,10 +12,10 @@ export default {
     try {
       const response = await api(config);
       if (response.status === 200 && response.data) {
-        console.log('inside getPromotion', response.data);
+        console.log('inside getArticles', response.data);
         return response.data;
       }
-      throw new Error('Error en login');
+      throw new Error('Error getting data');
     } catch (err) {
       return {err: err};
     }

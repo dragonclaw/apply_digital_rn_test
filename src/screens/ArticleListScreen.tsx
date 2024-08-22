@@ -1,6 +1,6 @@
 import {Text, View} from 'react-native';
 import React, {useEffect} from 'react';
-import articles from '../services/articles';
+import articles from '../services/articles/articles';
 
 const ArticleListScreen = () => {
   useEffect(() => {
