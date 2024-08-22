@@ -1,7 +1,16 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import articles from '../services/articles';
 
 const ArticleListScreen = () => {
+  useEffect(() => {
+    const fetchList = async () => {
+      const data = await articles.getArticles();
+      console.log(data);
+    };
+    fetchList();
+  }, []);
+
   return (
     <View>
       <Text>ArticleScreen</Text>
@@ -10,5 +19,3 @@ const ArticleListScreen = () => {
 };
 
 export default ArticleListScreen;
-
-const styles = StyleSheet.create({});
