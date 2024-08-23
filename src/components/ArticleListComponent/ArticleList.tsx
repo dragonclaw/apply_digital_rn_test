@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {FlatList} from 'react-native';
 import {Container} from './ArticleList.styles';
-import SingleArticleComponent from '../SingleArticleComponent/SingleArticleComponent';
+import CardArticleComponent from '../CardArticleComponent/CardArticleComponent';
 
 interface Article {
   created_at_i: string;
@@ -26,7 +26,7 @@ const ArticleList: React.FC<ArticleListProps> = ({data, onRefresh}) => {
     <Container>
       <FlatList
         data={data}
-        renderItem={({item}) => <SingleArticleComponent SingleArticle={item} />}
+        renderItem={({item}) => <CardArticleComponent SingleArticle={item} />}
         keyExtractor={item => item.created_at_i}
         refreshing={refreshing}
         onRefresh={handleRefresh}
