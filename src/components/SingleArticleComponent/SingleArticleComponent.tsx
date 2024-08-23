@@ -1,5 +1,7 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {
+  CardContainer,
   CardDivider,
   CardSubTitle,
   CardTitle,
@@ -12,15 +14,24 @@ interface ArticleData {
 }
 
 const SingleArticleComponent: React.FC<ArticleData> = ({SingleArticle}) => {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate('SingleArticleScreen', {article: SingleArticle});
+  };
   return (
-    <SingleArticleCard>
-      <CardTitle>{SingleArticle.title || SingleArticle.story_title}</CardTitle>
-      <CardDivider />
-      <CardSubTitle>
-        {SingleArticle.author} -{' '}
-        {relativeTimeFromElapsed(SingleArticle.created_at)}
-      </CardSubTitle>
-    </SingleArticleCard>
+    <CardContainer onPress={handlePress}>
+      <SingleArticleCard>
+        <CardTitle>
+          {SingleArticle.title || SingleArticle.story_title}
+        </CardTitle>
+        <CardDivider />
+        <CardSubTitle>
+          {SingleArticle.author} -{' '}
+          {relativeTimeFromElapsed(SingleArticle.created_at)}
+        </CardSubTitle>
+      </SingleArticleCard>
+    </CardContainer>
   );
 };
 

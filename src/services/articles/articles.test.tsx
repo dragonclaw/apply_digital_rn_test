@@ -79,26 +79,29 @@ describe('articleService', () => {
         url: '/search_by_date',
         params: {
           query: 'mobile',
+          tags: 'story',
         },
         method: 'get',
       });
-      expect(result).toEqual(mockData);
+      expect(result).toEqual(mockData.hits);
     });
 
     it('should throw an error when API call fails', async () => {
-      const mockError = new Error('Network Error');
+      const mockError = new Error('API call failed');
       (api as jest.MockedFunction<typeof api>).mockRejectedValue(mockError);
 
-      const result = await articleService.getArticles();
+      await expect(articleService.getArticles()).rejects.toThrow(
+        'API call failed',
+      );
 
       expect(api).toHaveBeenCalledWith({
         url: '/search_by_date',
         params: {
           query: 'mobile',
+          tags: 'story',
         },
         method: 'get',
       });
-      expect(result).toEqual({err: mockError});
     });
   });
 });

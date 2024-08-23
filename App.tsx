@@ -16,7 +16,10 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="ListScreen">
           <Stack.Screen name="ListScreen" component={ArticleListScreen} />
-          <Stack.Screen name="SingleArticle" component={SingleArticleScreen} />
+          <Stack.Screen
+            name="SingleArticleScreen"
+            component={SingleArticleScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

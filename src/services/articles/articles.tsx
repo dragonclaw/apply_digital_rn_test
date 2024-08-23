@@ -6,6 +6,7 @@ export default {
       url: '/search_by_date',
       params: {
         query: 'mobile',
+        tags: 'story',
       },
       method: 'get',
     };
@@ -15,7 +16,6 @@ export default {
         console.log('did load?');
         return response.data.hits;
       }
-      throw new Error('Error getting data');
     } catch (err) {
       throw err;
     }
