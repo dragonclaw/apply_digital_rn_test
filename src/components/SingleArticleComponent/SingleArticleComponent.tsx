@@ -1,6 +1,11 @@
-import {Text} from '@rneui/base';
 import React from 'react';
-import {SingleArticleCard} from './SingleArticleComponent.styles';
+import {
+  CardDivider,
+  CardSubTitle,
+  CardTitle,
+  SingleArticleCard,
+} from './SingleArticleComponent.styles';
+import {relativeTimeFromElapsed} from '../../utils/convertTime';
 
 interface ArticleData {
   [key: string]: any;
@@ -9,7 +14,12 @@ interface ArticleData {
 const SingleArticleComponent: React.FC<ArticleData> = ({SingleArticle}) => {
   return (
     <SingleArticleCard>
-      <Text>{SingleArticle.title || SingleArticle.story_title}</Text>
+      <CardTitle>{SingleArticle.title || SingleArticle.story_title}</CardTitle>
+      <CardDivider />
+      <CardSubTitle>
+        {SingleArticle.author} -{' '}
+        {relativeTimeFromElapsed(SingleArticle.created_at)}
+      </CardSubTitle>
     </SingleArticleCard>
   );
 };
