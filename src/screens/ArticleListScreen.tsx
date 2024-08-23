@@ -7,17 +7,18 @@ const ArticleListScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [data, setData] = useState([]);
+
+  const fetchList = async () => {
+    try {
+      setIsLoading(true);
+      setData(await articles.getArticles());
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      setError(true);
+    }
+  };
   useEffect(() => {
-    const fetchList = async () => {
-      try {
-        setIsLoading(true);
-        setData(await articles.getArticles());
-        setIsLoading(false);
-      } catch (err) {
-        setIsLoading(false);
-        setError(true);
-      }
-    };
     fetchList();
   }, []);
 
@@ -30,7 +31,7 @@ const ArticleListScreen = () => {
       <Text>Error fetching the data</Text>
     </View>
   ) : (
-    <ArticleList data={data} />
+    <ArticleList data={data} onRefresh={fetchList} />
   );
 };
 

@@ -1,5 +1,7 @@
-import {Text, View, FlatList} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import {FlatList} from 'react-native';
+import {Container} from './ArticleList.styles';
+import SingleArticleComponent from '../SingleArticleComponent/SingleArticleComponent';
 
 interface Article {
   created_at_i: string;
@@ -8,19 +10,28 @@ interface Article {
 
 interface ArticleListProps {
   data: Article[];
+  onRefresh: () => Promise<void>;
 }
 
-const ArticleList: React.FC<ArticleListProps> = ({data}) => {
+const ArticleList: React.FC<ArticleListProps> = ({data, onRefresh}) => {
+  const [refreshing, setRefreshing] = useState(false);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await onRefresh();
+    setRefreshing(false);
+  };
+
   return (
-    <View>
+    <Container>
       <FlatList
         data={data}
-        renderItem={({item}) => (
-          <Text>{JSON.stringify(item.title || item.story_title)}</Text>
-        )}
+        renderItem={({item}) => <SingleArticleComponent SingleArticle={item} />}
         keyExtractor={item => item.created_at_i}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
       />
-    </View>
+    </Container>
   );
 };
 

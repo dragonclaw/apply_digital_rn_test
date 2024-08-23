@@ -12,7 +12,6 @@ export default {
     try {
       const response = await api(config);
       if (response.status === 200 && response.data) {
-        console.log('inside getArticles', response.data.hits);
         return response.data.hits;
       }
       throw new Error('Error getting data');
