@@ -1,7 +1,7 @@
 import {Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import articles from '../services/articles/articles';
-import ArticleList from '../components/ArticleListComponent/ArticleList';
+import articles from '../../services/articles/articles';
+import ArticleList from '../../components/ArticleListComponent/ArticleList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 

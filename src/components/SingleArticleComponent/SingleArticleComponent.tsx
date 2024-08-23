@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {
   CardContainer,
   CardDivider,
@@ -8,16 +8,15 @@ import {
   SingleArticleCard,
 } from './SingleArticleComponent.styles';
 import {relativeTimeFromElapsed} from '../../utils/convertTime';
-
-interface ArticleData {
-  [key: string]: any;
-}
+import {ArticleData, NavigationTypes} from './SingleArticleComponent.types';
 
 const SingleArticleComponent: React.FC<ArticleData> = ({SingleArticle}) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<NavigationTypes>>();
 
   const handlePress = () => {
-    navigation.navigate('SingleArticleScreen', {article: SingleArticle});
+    if (SingleArticle.url) {
+      navigation.navigate('SingleArticleScreen', {article: SingleArticle});
+    }
   };
   return (
     <CardContainer onPress={handlePress}>

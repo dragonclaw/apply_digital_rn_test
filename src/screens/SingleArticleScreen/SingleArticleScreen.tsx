@@ -1,6 +1,7 @@
-import {Text, View} from 'react-native';
 import React from 'react';
 import {useRoute, RouteProp} from '@react-navigation/native';
+import {WebView} from 'react-native-webview';
+import {WebViewContainer} from './SingleArticleScreen.styles';
 
 type RootStackParamList = {
   SingleArticleScreen: {article: any};
@@ -17,9 +18,13 @@ const SingleArticleScreen = () => {
   console.log('single article', article.url);
 
   return (
-    <View>
-      <Text>this is a test</Text>
-    </View>
+    <WebViewContainer>
+      <WebView
+        source={{
+          uri: article.url ?? '',
+        }}
+      />
+    </WebViewContainer>
   );
 };
 
