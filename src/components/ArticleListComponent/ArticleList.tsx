@@ -2,16 +2,7 @@ import React, {useState} from 'react';
 import {FlatList} from 'react-native';
 import {Container} from './ArticleList.styles';
 import CardArticleComponent from '../CardArticleComponent/CardArticleComponent';
-
-interface Article {
-  created_at_i: string;
-  [key: string]: any;
-}
-
-interface ArticleListProps {
-  data: Article[];
-  onRefresh: () => Promise<void>;
-}
+import {ArticleListProps} from './ArticleList.types';
 
 const ArticleList: React.FC<ArticleListProps> = ({data, onRefresh}) => {
   const [refreshing, setRefreshing] = useState(false);
@@ -26,7 +17,9 @@ const ArticleList: React.FC<ArticleListProps> = ({data, onRefresh}) => {
     <Container>
       <FlatList
         data={data}
-        renderItem={({item}) => <CardArticleComponent SingleArticle={item} />}
+        renderItem={({item}) => (
+          <CardArticleComponent SingleArticle={item} fetchList={onRefresh} />
+        )}
         keyExtractor={item => item.created_at_i}
         refreshing={refreshing}
         onRefresh={handleRefresh}

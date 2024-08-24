@@ -14,12 +14,17 @@ const ArticleListScreen = () => {
   const fetchList = async () => {
     try {
       setIsLoading(true);
-
       const articlesData = await articles.getArticles();
-      setData(articlesData);
-      await AsyncStorage.setItem('articles', JSON.stringify(articlesData));
-      const dataSaved = await AsyncStorage.getItem('articles');
-      console.log('saved data', dataSaved);
+      const deletedArticles = JSON.parse(
+        (await AsyncStorage.getItem('deletedArticles')) as string,
+      );
+      const filteredArticles = articlesData.filter(
+        (article: {story_id: any}) => {
+          return !deletedArticles.includes(article.story_id);
+        },
+      );
+      setData(filteredArticles);
+      await AsyncStorage.setItem('articles', JSON.stringify(filteredArticles));
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
@@ -31,8 +36,6 @@ const ArticleListScreen = () => {
     try {
       const storedData = await AsyncStorage.getItem('articles');
       if (storedData) {
-        console.log('get data without fetching');
-        console.log('stored data', storedData);
         setData(JSON.parse(storedData));
       }
     } catch (err) {

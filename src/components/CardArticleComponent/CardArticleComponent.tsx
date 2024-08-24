@@ -8,10 +8,24 @@ import {
   SingleArticleCard,
 } from './CardArticleComponent.styles';
 import {relativeTimeFromElapsed} from '../../utils/convertTime';
-import {ArticleData, NavigationTypes} from './CardArticleComponent.types';
+import {
+  CardArticleComponentProps,
+  NavigationTypes,
+} from './CardArticleComponent.types';
 import {Button, ListItem} from '@rneui/themed';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Article} from '../ArticleListComponent/ArticleList.types';
 
-const SwipeAction: React.FC = () => (
+const deleteArticle = async (SingleArticle: Article, fetchList: () => void) => {
+  const currentArray =
+    JSON.parse((await AsyncStorage.getItem('deletedArticles')) as string) || [];
+  currentArray.push(SingleArticle.story_id);
+  await AsyncStorage.setItem('deletedArticles', JSON.stringify(currentArray));
+
+  fetchList();
+};
+
+const SwipeAction = ({SingleArticle, fetchList}: CardArticleComponentProps) => (
   <Button
     // eslint-disable-next-line react-native/no-inline-styles
     containerStyle={{
@@ -21,21 +35,28 @@ const SwipeAction: React.FC = () => (
     }}
     type="clear"
     icon={{name: 'delete-outline'}}
-    onPress={() => console.log('delete')}
+    onPress={async () => await deleteArticle(SingleArticle, fetchList)}
   />
 );
 
-const CardArticleComponent: React.FC<ArticleData> = ({SingleArticle}) => {
+const CardArticleComponent = ({
+  SingleArticle,
+  fetchList,
+}: CardArticleComponentProps) => {
   const navigation = useNavigation<NavigationProp<NavigationTypes>>();
 
   const handlePress = () => {
     if (SingleArticle.url) {
-      navigation.navigate('SingleArticleScreen', {article: SingleArticle});
+      navigation.navigate('SingleArticleScreen', {
+        article: SingleArticle,
+      });
     }
   };
 
   return (
-    <ListItem.Swipeable rightWidth={90} rightContent={SwipeAction}>
+    <ListItem.Swipeable
+      rightWidth={90}
+      rightContent={SwipeAction({SingleArticle, fetchList})}>
       <CardContainer onPress={handlePress}>
         <SingleArticleCard>
           <CardTitle>

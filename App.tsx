@@ -23,6 +23,7 @@ export default function App() {
           <Stack.Screen
             name="SingleArticleScreen"
             component={SingleArticleScreen}
+            //need to refactor to a custom header if time permits
             options={{title: 'Back'}}
           />
         </Stack.Navigator>
