@@ -8,9 +8,11 @@ import NetInfo from '@react-native-community/netinfo';
 const ArticleListScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setError] = useState(false);
+  //TODO: need to refactor to use context
   const [data, setData] = useState([]);
   const [isOffline, setIsOffline] = useState(false);
 
+  //TODO: need to refactor to only fetch and save into context
   const fetchList = async () => {
     try {
       setIsLoading(true);

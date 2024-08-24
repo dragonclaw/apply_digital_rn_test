@@ -46,11 +46,9 @@ const CardArticleComponent = ({
   const navigation = useNavigation<NavigationProp<NavigationTypes>>();
 
   const handlePress = () => {
-    if (SingleArticle.url) {
-      navigation.navigate('SingleArticleScreen', {
-        article: SingleArticle,
-      });
-    }
+    navigation.navigate('SingleArticleScreen', {
+      article: SingleArticle,
+    });
   };
 
   return (
