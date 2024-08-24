@@ -9,6 +9,7 @@ import SingleArticleScreen from './src/screens/SingleArticleScreen/SingleArticle
 import FavoritesScreen from './src/screens/FavoritesScreen/FavoritesScreen';
 import UserNotificationsScreen from './src/screens/UserNotificationsScreen/UserNotificationsScreen';
 import {Icon} from '@rneui/themed';
+import DeletedArticlesScreen from './src/screens/DeletedArticlesScreen/DeletedArticlesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +42,16 @@ function Home() {
           title: 'Favorites',
           // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: () => <IconTab name="star" />,
+        }}
+      />
+      <Tab.Screen
+        name="DeletedArticlesScreen"
+        component={DeletedArticlesScreen}
+        options={{
+          headerShown: false,
+          title: 'Deleted Articles',
+          // eslint-disable-next-line react/no-unstable-nested-components
+          tabBarIcon: () => <IconTab name="trash" />,
         }}
       />
       <Tab.Screen
