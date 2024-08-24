@@ -15,10 +15,15 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="ListScreen">
-          <Stack.Screen name="ListScreen" component={ArticleListScreen} />
+          <Stack.Screen
+            name="ListScreen"
+            component={ArticleListScreen}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="SingleArticleScreen"
             component={SingleArticleScreen}
+            options={{title: 'Back'}}
           />
         </Stack.Navigator>
       </NavigationContainer>
