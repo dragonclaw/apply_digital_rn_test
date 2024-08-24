@@ -13,7 +13,6 @@ export default {
     try {
       const response = await api(config);
       if (response.status === 200 && response.data) {
-        console.log('did load?');
         return response.data.hits;
       }
     } catch (err) {

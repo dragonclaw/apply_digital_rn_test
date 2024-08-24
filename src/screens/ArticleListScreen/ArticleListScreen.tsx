@@ -22,7 +22,7 @@ const ArticleListScreen = () => {
       );
       const filteredArticles = articlesData.filter(
         (article: {story_id: any}) => {
-          return !deletedArticles.includes(article.story_id);
+          return !deletedArticles?.includes(article.story_id);
         },
       );
       setData(filteredArticles);
@@ -61,10 +61,12 @@ const ArticleListScreen = () => {
   }, [isOffline]);
 
   return isLoading ? (
+    // TODO: change for a loading component
     <View>
       <Text>IS LOADING</Text>
     </View>
   ) : isError && data.length === 0 ? (
+    // TODO: change for a error component
     <View>
       <Text>Error fetching the data</Text>
     </View>
