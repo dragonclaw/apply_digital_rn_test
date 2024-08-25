@@ -6,5 +6,5 @@ export interface CardArticleComponentProps {
 }
 
 export type NavigationTypes = {
-  SingleArticleScreen: {article: Article};
+  SingleArticleScreen: {url: string};
 };
