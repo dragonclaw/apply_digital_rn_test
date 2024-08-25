@@ -25,7 +25,7 @@ function IconTab({name}: {name: string}) {
 
 function Home() {
   useEffect(() => {
-    const requestCameraPermission = async () => {
+    const requestNotificationPermission = async () => {
       try {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
@@ -70,7 +70,7 @@ function Home() {
         console.warn(err);
       }
     };
-    requestCameraPermission();
+    requestNotificationPermission();
   }, []);
 
   return (
