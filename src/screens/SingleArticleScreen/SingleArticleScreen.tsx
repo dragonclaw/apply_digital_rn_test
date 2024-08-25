@@ -5,7 +5,7 @@ import {WebViewContainer} from './SingleArticleScreen.styles';
 import {Text} from '@rneui/themed';
 
 type RootStackParamList = {
-  SingleArticleScreen: {article: any};
+  SingleArticleScreen: {url: any};
 };
 
 type SingleArticleScreenRouteProp = RouteProp<
@@ -15,14 +15,14 @@ type SingleArticleScreenRouteProp = RouteProp<
 
 const SingleArticleScreen = () => {
   const route = useRoute<SingleArticleScreenRouteProp>();
-  const {article} = route.params;
+  const {url} = route.params;
 
   return (
     <WebViewContainer>
-      {article.url ? (
+      {url ? (
         <WebView
           source={{
-            uri: article.url ?? '',
+            uri: url ?? '',
           }}
         />
       ) : (

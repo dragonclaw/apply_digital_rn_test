@@ -4,8 +4,12 @@ import articles from '../../services/articles/articles';
 import ArticleList from '../../components/ArticleListComponent/ArticleList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
+import notifee, {EventType} from '@notifee/react-native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {NavigationTypes} from '../../components/CardArticleComponent/CardArticleComponent.types';
 
 const ArticleListScreen = () => {
+  const navigation = useNavigation<NavigationProp<NavigationTypes>>();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setError] = useState(false);
   //TODO: need to refactor to use context
@@ -60,6 +64,48 @@ const ArticleListScreen = () => {
     }
   }, [isOffline]);
 
+  notifee.onForegroundEvent(({type, detail}) => {
+    console.log('FOREGROUND');
+    console.log('type', type);
+    console.log('detail', detail);
+    console.log(EventType);
+    if (
+      type === EventType.PRESS &&
+      detail.pressAction &&
+      detail.pressAction.id
+    ) {
+      console.log('NAVIGATION IN BACKGROUND');
+      navigation.navigate('SingleArticleScreen', {
+        url: detail.pressAction.id,
+      });
+      console.log(
+        'User pressed an action with the id ON THE BACKGROUND: ',
+        detail.pressAction.id,
+      );
+    }
+  });
+
+  notifee.onBackgroundEvent(async ({type, detail}) => {
+    console.log('BACKGROUND');
+    console.log('type', type);
+    console.log('detail', detail);
+    console.log(EventType);
+    if (
+      type === EventType.PRESS &&
+      detail.pressAction &&
+      detail.pressAction.id
+    ) {
+      console.log('NAVIGATION IN BACKGROUND');
+      navigation.navigate('SingleArticleScreen', {
+        url: detail.pressAction.id,
+      });
+      console.log(
+        'User pressed an action with the id ON THE BACKGROUND: ',
+        detail.pressAction.id,
+      );
+    }
+  });
+
   return isLoading ? (
     // TODO: change for a loading component
     <View>
@@ -77,6 +123,7 @@ const ArticleListScreen = () => {
           <Text>is offline</Text>
         </View>
       )}
+
       <ArticleList data={data} onRefresh={fetchList} />
     </>
   );
