@@ -309,7 +309,9 @@ exports[`ArticleList Component matches the snapshot 1`] = `
               }
             }
           >
-            <View>
+            <View
+              testID="card-article-component"
+            >
               <View
                 style={
                   {
