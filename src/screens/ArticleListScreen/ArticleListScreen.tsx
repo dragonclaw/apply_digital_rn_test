@@ -9,7 +9,8 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {NavigationTypes} from '../../components/CardArticleComponent/CardArticleComponent.types';
 import BackgroundFetch from 'react-native-background-fetch';
 import LoadingComponent from '../../components/LoadingComponent/LoadingComponent';
-import {compareArrays} from '../../utils/compareArrays';
+import {compareArrays} from '../../utils/utils';
+import {Article} from '../../components/ArticleListComponent/ArticleList.types';
 
 const ArticleListScreen = () => {
   const navigation = useNavigation<NavigationProp<NavigationTypes>>();
@@ -27,11 +28,13 @@ const ArticleListScreen = () => {
       const deletedArticles = JSON.parse(
         (await AsyncStorage.getItem('deletedArticles')) as string,
       );
-      const filteredArticles = articlesData.filter(
-        (article: {story_id: any}) => {
-          return !deletedArticles?.includes(article.story_id);
-        },
-      );
+
+      const filteredArticles = articlesData.filter((article: Article) => {
+        return !deletedArticles?.some(
+          (deletedArticle: Article) =>
+            deletedArticle.story_id === article.story_id,
+        );
+      });
       setData(filteredArticles);
       await AsyncStorage.setItem('articles', JSON.stringify(filteredArticles));
       setIsLoading(false);
@@ -179,7 +182,7 @@ const ArticleListScreen = () => {
         </View>
       )}
 
-      <ArticleList data={data} onRefresh={fetchList} />
+      <ArticleList data={data} onRefresh={fetchList} shouldSwipe={true} />
     </>
   );
 };

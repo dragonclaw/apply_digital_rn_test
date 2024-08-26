@@ -4,7 +4,11 @@ import {Container} from './ArticleList.styles';
 import CardArticleComponent from '../CardArticleComponent/CardArticleComponent';
 import {ArticleListProps} from './ArticleList.types';
 
-const ArticleList: React.FC<ArticleListProps> = ({data, onRefresh}) => {
+const ArticleList: React.FC<ArticleListProps> = ({
+  data,
+  onRefresh,
+  shouldSwipe,
+}) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const handleRefresh = async () => {
@@ -19,7 +23,11 @@ const ArticleList: React.FC<ArticleListProps> = ({data, onRefresh}) => {
         testID="flatlist"
         data={data}
         renderItem={({item}) => (
-          <CardArticleComponent SingleArticle={item} fetchList={onRefresh} />
+          <CardArticleComponent
+            SingleArticle={item}
+            fetchList={onRefresh}
+            shouldSwipe={shouldSwipe}
+          />
         )}
         keyExtractor={(item, index) => 'key' + index}
         refreshing={refreshing}

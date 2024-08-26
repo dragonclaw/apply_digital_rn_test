@@ -1,4 +1,5 @@
-import {relativeTimeFromElapsed} from './convertTime'; // Adjust the import path as necessary
+import {relativeTimeFromElapsed} from './utils';
+import {compareArrays} from './utils';
 
 // Mock the current time to ensure consistent test results
 Date.now = jest.fn(() => new Date('2023-01-01T01:00:00.00Z')) as any;
@@ -38,5 +39,37 @@ describe('relativeTimeFromElapsed', () => {
     const isoTimestamp = '2022-01-01T00:00:00Z';
     const result = relativeTimeFromElapsed(isoTimestamp);
     expect(result).toBe('a year ago');
+  });
+});
+
+describe('compareArrays', () => {
+  it('should return true for arrays with the same elements in the same order', () => {
+    const array1 = [1, 2, 3];
+    const array2 = [1, 2, 3];
+    expect(compareArrays(array1, array2)).toBe(true);
+  });
+
+  it('should return false for arrays with different lengths', () => {
+    const array1 = [1, 2, 3];
+    const array2 = [1, 2];
+    expect(compareArrays(array1, array2)).toBe(false);
+  });
+
+  it('should return false for arrays with the same length but different elements', () => {
+    const array1 = [1, 2, 3];
+    const array2 = [1, 2, 4];
+    expect(compareArrays(array1, array2)).toBe(false);
+  });
+
+  it('should return true for two empty arrays', () => {
+    const array1: any[] = [];
+    const array2: any[] = [];
+    expect(compareArrays(array1, array2)).toBe(true);
+  });
+
+  it('should return false for arrays with same elements but different order', () => {
+    const array1 = [1, 2, 3];
+    const array2 = [3, 2, 1];
+    expect(compareArrays(array1, array2)).toBe(false);
   });
 });

@@ -5,17 +5,17 @@ import LoadingComponent from '../../components/LoadingComponent/LoadingComponent
 import {View, Text} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 
-const DeletedArticlesScreen = () => {
-  const [deletedData, setDeletedData] = useState([]);
+const FavoritesArticlesScreen = () => {
+  const [favoritedArticles, setfavoritedArticles] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const loadDeletedArticlesFromStorage = async () => {
+  const loadFavoritedArticlesFromStorage = async () => {
     try {
       setIsLoading(true);
-      const storedData = await AsyncStorage.getItem('deletedArticles');
+      const storedData = await AsyncStorage.getItem('favoritedArticles');
       if (storedData) {
-        setDeletedData(JSON.parse(storedData));
+        setfavoritedArticles(JSON.parse(storedData));
       }
       setIsLoading(false);
     } catch (err) {
@@ -26,13 +26,13 @@ const DeletedArticlesScreen = () => {
 
   useFocusEffect(
     useCallback(() => {
-      loadDeletedArticlesFromStorage();
+      loadFavoritedArticlesFromStorage();
     }, []),
   );
 
   return isLoading ? (
     <LoadingComponent />
-  ) : error && deletedData.length === 0 ? (
+  ) : error && favoritedArticles.length === 0 ? (
     // TODO: change for a error component
     <View>
       <Text>Error fetching the data</Text>
@@ -40,12 +40,12 @@ const DeletedArticlesScreen = () => {
   ) : (
     <>
       <ArticleList
-        data={deletedData}
-        onRefresh={loadDeletedArticlesFromStorage}
+        data={favoritedArticles}
+        onRefresh={loadFavoritedArticlesFromStorage}
         shouldSwipe={false}
       />
     </>
   );
 };
 
-export default DeletedArticlesScreen;
+export default FavoritesArticlesScreen;

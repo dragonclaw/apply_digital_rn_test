@@ -7,7 +7,7 @@ import {
   CardTitle,
   SingleArticleCard,
 } from './CardArticleComponent.styles';
-import {relativeTimeFromElapsed} from '../../utils/convertTime';
+import {relativeTimeFromElapsed} from '../../utils/utils';
 import {
   CardArticleComponentProps,
   NavigationTypes,
@@ -19,29 +19,65 @@ import {Article} from '../ArticleListComponent/ArticleList.types';
 const deleteArticle = async (SingleArticle: Article, fetchList: () => void) => {
   const currentArray =
     JSON.parse((await AsyncStorage.getItem('deletedArticles')) as string) || [];
-  currentArray.push(SingleArticle.story_id);
+  currentArray.push(SingleArticle);
   await AsyncStorage.setItem('deletedArticles', JSON.stringify(currentArray));
-
   fetchList();
 };
 
-const SwipeAction = ({SingleArticle, fetchList}: CardArticleComponentProps) => (
-  <Button
-    // eslint-disable-next-line react-native/no-inline-styles
-    containerStyle={{
-      flex: 1,
-      justifyContent: 'center',
-      backgroundColor: '#f4f4f4',
-    }}
-    type="clear"
-    icon={{name: 'delete-outline'}}
-    onPress={async () => await deleteArticle(SingleArticle, fetchList)}
-  />
-);
+const favoriteArticle = async (
+  SingleArticle: Article,
+  fetchList: () => void,
+) => {
+  const currentArray =
+    JSON.parse((await AsyncStorage.getItem('favoritedArticles')) as string) ||
+    [];
+  currentArray.push(SingleArticle);
+  await AsyncStorage.setItem('favoritedArticles', JSON.stringify(currentArray));
+  fetchList();
+};
+
+const SwipeActionDeleted = ({
+  SingleArticle,
+  fetchList,
+  shouldSwipe,
+}: CardArticleComponentProps) =>
+  shouldSwipe && (
+    <Button
+      // eslint-disable-next-line react-native/no-inline-styles
+      containerStyle={{
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#f4f4f4',
+      }}
+      type="clear"
+      icon={{name: 'delete-outline'}}
+      onPress={async () => await deleteArticle(SingleArticle, fetchList)}
+    />
+  );
+
+const SwipeActionFavorites = ({
+  SingleArticle,
+  fetchList,
+  shouldSwipe,
+}: CardArticleComponentProps) =>
+  shouldSwipe && (
+    <Button
+      // eslint-disable-next-line react-native/no-inline-styles
+      containerStyle={{
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#f4f4f4',
+      }}
+      type="clear"
+      icon={{name: 'star-outline'}}
+      onPress={async () => await favoriteArticle(SingleArticle, fetchList)}
+    />
+  );
 
 const CardArticleComponent = ({
   SingleArticle,
   fetchList,
+  shouldSwipe,
 }: CardArticleComponentProps) => {
   const navigation = useNavigation<NavigationProp<NavigationTypes>>();
 
@@ -55,7 +91,12 @@ const CardArticleComponent = ({
     <ListItem.Swipeable
       testID="card-article-component"
       rightWidth={90}
-      rightContent={SwipeAction({SingleArticle, fetchList})}>
+      rightContent={SwipeActionDeleted({SingleArticle, fetchList, shouldSwipe})}
+      leftContent={SwipeActionFavorites({
+        SingleArticle,
+        fetchList,
+        shouldSwipe,
+      })}>
       <CardContainer onPress={handlePress}>
         <SingleArticleCard>
           <CardTitle>

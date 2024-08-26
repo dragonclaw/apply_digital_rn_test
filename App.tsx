@@ -6,12 +6,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {ThemeProvider, createTheme} from '@rneui/themed';
 import ArticleListScreen from './src/screens/ArticleListScreen/ArticleListScreen';
 import SingleArticleScreen from './src/screens/SingleArticleScreen/SingleArticleScreen';
-import FavoritesScreen from './src/screens/FavoritesScreen/FavoritesScreen';
 import UserNotificationsScreen from './src/screens/UserNotificationsScreen/UserNotificationsScreen';
 import {Icon} from '@rneui/themed';
 import DeletedArticlesScreen from './src/screens/DeletedArticlesScreen/DeletedArticlesScreen';
 import {PermissionsAndroid} from 'react-native';
 import notifee from '@notifee/react-native';
+import FavoritesArticlesScreen from './src/screens/FavoritesArticlesScreen/FavoritesArticlesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -67,7 +67,7 @@ function Home() {
       />
       <Tab.Screen
         name="FavoritesScreen"
-        component={FavoritesScreen}
+        component={FavoritesArticlesScreen}
         options={{
           headerShown: false,
           title: 'Favorites',
