@@ -362,7 +362,7 @@ exports[`ArticleList Component matches the snapshot 1`] = `
                       >
                          -
                          
-                        in a few seconds
+                        a few seconds ago
                       </Text>
                     </View>
                   </View>

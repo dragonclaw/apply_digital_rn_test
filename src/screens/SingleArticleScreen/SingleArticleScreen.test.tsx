@@ -21,7 +21,7 @@ describe('SingleArticleScreen', () => {
   it('matches the snapshot when URL is provided', () => {
     // Mock the route params
     (useRoute as jest.Mock).mockReturnValue({
-      params: {url: 'https://example.com'},
+      params: {url: 'https://google.com'},
     });
 
     const {toJSON} = render(<SingleArticleScreen />);

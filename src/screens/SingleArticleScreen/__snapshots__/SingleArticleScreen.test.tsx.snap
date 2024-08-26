@@ -24,7 +24,7 @@ exports[`SingleArticleScreen matches the snapshot when URL is provided 1`] = `
   <View
     testID="webview"
   >
-    https://example.com
+    https://google.com
   </View>
 </View>
 `;
