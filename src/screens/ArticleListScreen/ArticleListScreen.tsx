@@ -115,7 +115,6 @@ const ArticleListScreen = () => {
       BackgroundFetch.finish(taskId);
     };
 
-    // Initialize BackgroundFetch only once when component mounts.
     let status = await BackgroundFetch.configure(
       {minimumFetchInterval: 15},
       onEvent,

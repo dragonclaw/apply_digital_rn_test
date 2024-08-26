@@ -1,9 +1,8 @@
 import React from 'react';
 import {render} from '@testing-library/react-native';
 import {useRoute} from '@react-navigation/native';
-import SingleArticleScreen from './SingleArticleScreen'; // Adjust the import path as necessary
+import SingleArticleScreen from './SingleArticleScreen';
 
-// Mock the useRoute hook
 jest.mock('@react-navigation/native', () => ({
   useRoute: jest.fn(),
 }));
@@ -19,7 +18,6 @@ jest.mock('react-native-webview', () => {
 
 describe('SingleArticleScreen', () => {
   it('matches the snapshot when URL is provided', () => {
-    // Mock the route params
     (useRoute as jest.Mock).mockReturnValue({
       params: {url: 'https://google.com'},
     });
@@ -29,7 +27,6 @@ describe('SingleArticleScreen', () => {
   });
 
   it('matches the snapshot when URL is not provided', () => {
-    // Mock the route params
     (useRoute as jest.Mock).mockReturnValue({
       params: {url: ''},
     });

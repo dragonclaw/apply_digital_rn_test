@@ -1,7 +1,6 @@
 import {relativeTimeFromElapsed} from './utils';
 import {compareArrays} from './utils';
 
-// Mock the current time to ensure consistent test results
 Date.now = jest.fn(() => new Date('2023-01-01T01:00:00.00Z')) as any;
 
 describe('relativeTimeFromElapsed', () => {

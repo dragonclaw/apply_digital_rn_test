@@ -1,5 +1,5 @@
 import api from '../../api';
-import articleService from './articles'; // adjust this import to the actual file path
+import articleService from './articles';
 
 jest.mock('../../api');
 

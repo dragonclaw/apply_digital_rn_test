@@ -1,8 +1,7 @@
 import React from 'react';
 import {render} from '@testing-library/react-native';
-import CardArticleComponent from './CardArticleComponent'; // Adjust the import path as necessary
+import CardArticleComponent from './CardArticleComponent';
 
-// Mock data
 const mockArticle = {
   story_title: 'Test Story Title',
   author: 'Test Author',
@@ -29,9 +28,7 @@ describe('CardArticleComponent', () => {
       />,
     );
 
-    // Check if the story title is rendered
     expect(getByText('Test Story Title')).toBeTruthy();
-    // Check if the author is rendered
     expect(getByText('Test Author - 2 years ago')).toBeTruthy();
   });
 });

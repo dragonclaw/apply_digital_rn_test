@@ -1,8 +1,7 @@
 import React from 'react';
 import {render, fireEvent, waitFor} from '@testing-library/react-native';
-import ArticleList from './ArticleList'; // Adjust the import path as necessary
+import ArticleList from './ArticleList';
 
-// Mock data
 const mockData = [
   {
     exhaustive: {
@@ -67,7 +66,6 @@ const mockData = [
   },
 ];
 
-// Mock onRefresh function
 const mockOnRefresh = jest.fn(() => Promise.resolve());
 jest.mock('@react-native-async-storage/async-storage', () => ({
   getItem: jest.fn(),
@@ -90,11 +88,7 @@ describe('ArticleList Component', () => {
     const {getByTestId} = render(
       <ArticleList data={mockData} onRefresh={mockOnRefresh} />,
     );
-
-    // Trigger refresh
     fireEvent(getByTestId('flatlist'), 'onRefresh');
-
-    // Wait for the refresh to complete
     await waitFor(() => expect(mockOnRefresh).toHaveBeenCalled());
   });
 });
