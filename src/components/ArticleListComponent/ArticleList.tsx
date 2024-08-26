@@ -16,11 +16,12 @@ const ArticleList: React.FC<ArticleListProps> = ({data, onRefresh}) => {
   return (
     <Container>
       <FlatList
+        testID="flatlist"
         data={data}
         renderItem={({item}) => (
           <CardArticleComponent SingleArticle={item} fetchList={onRefresh} />
         )}
-        keyExtractor={item => item.created_at_i}
+        keyExtractor={(item, index) => 'key' + index}
         refreshing={refreshing}
         onRefresh={handleRefresh}
       />

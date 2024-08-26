@@ -8,4 +8,7 @@ module.exports = {
     '^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       'jest-transform-stub',
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!((jest-)?react-native(-.*)?|@react-native(-community)?|@rneui)/)',
+  ],
 };

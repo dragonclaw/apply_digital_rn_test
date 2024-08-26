@@ -1,0 +1,507 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleList Component matches the snapshot 1`] = `
+<View
+  className="sc-braxZu kwoQlY"
+>
+  <RCTScrollView
+    data={
+      [
+        {
+          "exhaustive": {
+            "nbHits": false,
+            "typo": false,
+          },
+          "exhaustiveNbHits": false,
+          "exhaustiveTypo": false,
+          "hits": [
+            {
+              "_highlightResult": {
+                "author": {
+                  "matchLevel": "none",
+                  "matchedWords": [],
+                  "value": "evanjrowley",
+                },
+                "comment_text": {
+                  "fullyHighlighted": false,
+                  "matchLevel": "full",
+                  "matchedWords": [
+                    "mobile",
+                  ],
+                  "value": "I went though a similar problem about 10 years ago. In my case, the phone (iPhone 4S) wasn't lost, but it's clock was perpetually off. The WiFi radio had failed and the Stratum 1 time server on my <em>mobile</em> network seemed to be sending it the wrong time. This resulted in all of the MFA TOTPs getting rejected and me not being able to access Gmail for a year. Despite the clock issue, many things still worked, presumably because this was still back when much of the internet used either weak or zero TLS/SSL.",
+                },
+                "story_title": {
+                  "matchLevel": "none",
+                  "matchedWords": [],
+                  "value": "Never enable 2FA for accounts that you actually care about (2023)",
+                },
+                "story_url": {
+                  "matchLevel": "none",
+                  "matchedWords": [],
+                  "value": "https://benwilber.github.io/2023/07/17/never-enable-2fa-for-accounts-you-actually-care-about.html",
+                },
+              },
+              "_tags": [
+                "comment",
+                "author_evanjrowley",
+                "story_41316029",
+              ],
+              "author": "evanjrowley",
+              "comment_text": "I went though a similar problem about 10 years ago. In my case, the phone (iPhone 4S) wasn&#x27;t lost, but it&#x27;s clock was perpetually off. The WiFi radio had failed and the Stratum 1 time server on my mobile network seemed to be sending it the wrong time. This resulted in all of the MFA TOTPs getting rejected and me not being able to access Gmail for a year. Despite the clock issue, many things still worked, presumably because this was still back when much of the internet used either weak or zero TLS&#x2F;SSL.",
+              "created_at": "2024-08-22T02:14:57Z",
+              "created_at_i": 1724292897,
+              "objectID": "41316141",
+              "parent_id": 41316029,
+              "story_id": 41316029,
+              "story_title": "Never enable 2FA for accounts that you actually care about (2023)",
+              "story_url": "https://benwilber.github.io/2023/07/17/never-enable-2fa-for-accounts-you-actually-care-about.html",
+              "updated_at": "2024-08-22T02:35:33Z",
+            },
+          ],
+          "hitsPerPage": 20,
+          "nbHits": 325262,
+          "nbPages": 50,
+          "page": 0,
+          "params": "query=mobile&advancedSyntax=true&analyticsTags=backend",
+          "processingTimeMS": 15,
+          "processingTimingsMS": {},
+          "query": "mobile",
+          "serverTimeMS": 17,
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    stickyHeaderIndices={[]}
+    testID="flatlist"
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "bottom": 0,
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "left": 0,
+                "overflow": "hidden",
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <View
+              style={
+                [
+                  {
+                    "width": 250,
+                    "zIndex": 1,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                {
+                  "flex": 0,
+                }
+              }
+            />
+            <View
+              style={
+                [
+                  {
+                    "width": 90,
+                    "zIndex": 1,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                style={
+                  [
+                    {
+                      "overflow": "hidden",
+                    },
+                    {
+                      "borderRadius": 2,
+                    },
+                    {
+                      "backgroundColor": "#f4f4f4",
+                      "flex": 1,
+                      "justifyContent": "center",
+                    },
+                    false,
+                  ]
+                }
+                testID="RNE_BUTTON_WRAPPER"
+              >
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": false,
+                      "checked": undefined,
+                      "disabled": false,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#2089dc",
+                        "borderRadius": 2,
+                        "borderWidth": 0,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "padding": 8,
+                        "paddingHorizontal": 10,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        {
+                          "marginHorizontal": 5,
+                          "overflow": "hidden",
+                        }
+                      }
+                      testID="RNE__ICON__CONTAINER"
+                    >
+                      <View
+                        accessibilityRole="button"
+                        android_ripple={
+                          {
+                            "borderless": false,
+                            "color": "rgba(0, 0, 0, 0.3)",
+                            "radius": -5,
+                          }
+                        }
+                        disabled={false}
+                        testID="RNE__ICON__CONTAINER_ACTION"
+                      >
+                        <View
+                          style={
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "transparent",
+                              "justifyContent": "center",
+                            }
+                          }
+                          testID="RNE__ICON"
+                        >
+                          <Text
+                            allowFontScaling={false}
+                            selectable={false}
+                            style={
+                              [
+                                {
+                                  "color": "#242424",
+                                  "fontSize": 24,
+                                },
+                                {
+                                  "backgroundColor": "transparent",
+                                },
+                                {
+                                  "fontFamily": "Material Icons",
+                                  "fontStyle": "normal",
+                                  "fontWeight": "normal",
+                                },
+                                {},
+                              ]
+                            }
+                            testID="RNE__ICON__Component"
+                          >
+                            
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            collapsable={false}
+            onMoveShouldSetResponder={[Function]}
+            onMoveShouldSetResponderCapture={[Function]}
+            onResponderEnd={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderReject={[Function]}
+            onResponderRelease={[Function]}
+            onResponderStart={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            onStartShouldSetResponderCapture={[Function]}
+            style={
+              {
+                "transform": [
+                  {
+                    "translateX": 0,
+                  },
+                ],
+              }
+            }
+          >
+            <View>
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#ffffff",
+                    "borderColor": "#bcbbc1",
+                    "flexDirection": "row",
+                    "padding": 14,
+                  }
+                }
+                testID="RNE__LISTITEM__padView"
+              >
+                <View
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    className="sc-elDIKY"
+                    style={
+                      {
+                        "backgroundColor": "#ffffff",
+                        "borderColor": "#e1e8ee",
+                        "borderWidth": 1,
+                        "margin": 15,
+                        "marginBottom": 0,
+                        "padding": 15,
+                        "shadowColor": "rgba(0,0,0, .2)",
+                        "shadowOffset": {
+                          "height": 0,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 1,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        {
+                          "backgroundColor": "transparent",
+                        }
+                      }
+                    >
+                      <Text
+                        accessibilityRole="text"
+                        className="sc-fQpRED bnaNJd"
+                        style={
+                          {
+                            "color": "#43484d",
+                            "fontSize": 18,
+                            "fontWeight": "bold",
+                            "marginBottom": 15,
+                            "textAlign": "center",
+                          }
+                        }
+                        testID="cardTitle"
+                      />
+                      <View
+                        className="sc-iKTcqh"
+                        style={
+                          {
+                            "borderBottomColor": "#bcbbc1",
+                            "borderBottomWidth": 0.5,
+                            "marginBottom": 15,
+                          }
+                        }
+                        testID="RNE__Divider"
+                        theme={
+                          {
+                            "colors": {
+                              "background": "#ffffff",
+                              "black": "#242424",
+                              "disabled": "hsl(208, 8%, 90%)",
+                              "divider": "#bcbbc1",
+                              "error": "#ff190c",
+                              "grey0": "#393e42",
+                              "grey1": "#43484d",
+                              "grey2": "#5e6977",
+                              "grey3": "#86939e",
+                              "grey4": "#bdc6cf",
+                              "grey5": "#e1e8ee",
+                              "greyOutline": "#bbb",
+                              "platform": {
+                                "android": {
+                                  "error": "#f44336",
+                                  "grey": "rgba(0, 0, 0, 0.54)",
+                                  "primary": "#2196f3",
+                                  "searchBg": "#dcdce1",
+                                  "secondary": "#9C27B0",
+                                  "success": "#4caf50",
+                                  "warning": "#ffeb3b",
+                                },
+                                "default": {
+                                  "error": "#ff3b30",
+                                  "grey": "#7d7d7d",
+                                  "primary": "#007aff",
+                                  "searchBg": "#dcdce1",
+                                  "secondary": "#5856d6",
+                                  "success": "#4cd964",
+                                  "warning": "#ffcc00",
+                                },
+                                "ios": {
+                                  "error": "#ff3b30",
+                                  "grey": "#7d7d7d",
+                                  "primary": "#007aff",
+                                  "searchBg": "#dcdce1",
+                                  "secondary": "#5856d6",
+                                  "success": "#4cd964",
+                                  "warning": "#ffcc00",
+                                },
+                                "web": {
+                                  "error": "#ff190c",
+                                  "grey": "#393e42",
+                                  "primary": "#2089dc",
+                                  "searchBg": "#303337",
+                                  "secondary": "#ca71eb",
+                                  "success": "#52c41a",
+                                  "warning": "#faad14",
+                                },
+                              },
+                              "primary": "#2089dc",
+                              "searchBg": "#303337",
+                              "secondary": "#ad1457",
+                              "success": "#52c41a",
+                              "warning": "#faad14",
+                              "white": "#ffffff",
+                            },
+                            "spacing": {
+                              "lg": 12,
+                              "md": 8,
+                              "sm": 4,
+                              "xl": 24,
+                              "xs": 2,
+                            },
+                          }
+                        }
+                      />
+                      <Text
+                        accessibilityRole="text"
+                        className="sc-dsLQwm ldlbff"
+                        style={
+                          {
+                            "color": "#ffffff",
+                            "fontSize": 16.714285714285715,
+                            "fontWeight": "400",
+                            "marginBottom": 8,
+                          }
+                        }
+                      >
+                         -
+                         
+                        a few seconds ago
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

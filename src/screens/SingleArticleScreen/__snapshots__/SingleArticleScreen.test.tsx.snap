@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleArticleScreen matches the snapshot when URL is not provided 1`] = `
+<View
+  className="sc-braxZu ccBOXj"
+>
+  <Text
+    accessibilityRole="text"
+    style={
+      {
+        "color": "#242424",
+      }
+    }
+  >
+     No URL on this story
+  </Text>
+</View>
+`;
+
+exports[`SingleArticleScreen matches the snapshot when URL is provided 1`] = `
+<View
+  className="sc-braxZu ccBOXj"
+>
+  <View
+    testID="webview"
+  >
+    https://example.com
+  </View>
+</View>
+`;

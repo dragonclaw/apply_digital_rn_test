@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleListScreen matches the snapshot 1`] = `
+<View
+  className="sc-gnpbhQ ftrdcH"
+>
+  <ActivityIndicator
+    className="sc-la-DxNn hhtHDd"
+    color="#aaa"
+    size={50}
+  />
+</View>
+`;

@@ -53,6 +53,7 @@ const CardArticleComponent = ({
 
   return (
     <ListItem.Swipeable
+      testID="card-article-component"
       rightWidth={90}
       rightContent={SwipeAction({SingleArticle, fetchList})}>
       <CardContainer onPress={handlePress}>
