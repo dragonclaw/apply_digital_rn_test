@@ -5,7 +5,7 @@ import {WebViewContainer} from './SingleArticleScreen.styles';
 import {Text} from '@rneui/themed';
 
 type RootStackParamList = {
-  SingleArticleScreen: {url: any};
+  SingleArticleScreen: {url: string};
 };
 
 type SingleArticleScreenRouteProp = RouteProp<

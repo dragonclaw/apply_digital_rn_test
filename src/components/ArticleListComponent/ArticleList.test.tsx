@@ -1,6 +1,9 @@
 import React from 'react';
 import {render, fireEvent, waitFor} from '@testing-library/react-native';
 import ArticleList from './ArticleList';
+import {createTheme, ThemeProvider} from '@rneui/themed';
+
+Date.now = jest.fn(() => new Date('2023-01-01T01:00:00.00Z')) as any;
 
 const mockData = [
   {
@@ -78,8 +81,11 @@ jest.mock('@react-navigation/native', () => ({
 
 describe('ArticleList Component', () => {
   it('matches the snapshot', () => {
+    const theme = createTheme();
     const {toJSON} = render(
-      <ArticleList data={mockData} onRefresh={mockOnRefresh} />,
+      <ThemeProvider theme={theme}>
+        <ArticleList data={mockData} onRefresh={mockOnRefresh} />
+      </ThemeProvider>,
     );
     expect(toJSON()).toMatchSnapshot();
   });

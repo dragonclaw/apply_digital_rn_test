@@ -179,7 +179,9 @@ exports[`ArticleList Component matches the snapshot 1`] = `
             }
           >
             <View
+              replaceTheme={[Function]}
               testID="card-article-component"
+              updateTheme={[Function]}
             >
               <View
                 style={
@@ -229,6 +231,7 @@ exports[`ArticleList Component matches the snapshot 1`] = `
                 >
                   <View
                     className="sc-elDIKY"
+                    replaceTheme={[Function]}
                     style={
                       {
                         "backgroundColor": "#ffffff",
@@ -246,6 +249,7 @@ exports[`ArticleList Component matches the snapshot 1`] = `
                         "shadowRadius": 1,
                       }
                     }
+                    updateTheme={[Function]}
                   >
                     <View
                       style={
@@ -270,6 +274,7 @@ exports[`ArticleList Component matches the snapshot 1`] = `
                       />
                       <View
                         className="sc-iKTcqh"
+                        replaceTheme={[Function]}
                         style={
                           {
                             "borderBottomColor": "#bcbbc1",
@@ -338,6 +343,7 @@ exports[`ArticleList Component matches the snapshot 1`] = `
                               "warning": "#faad14",
                               "white": "#ffffff",
                             },
+                            "mode": "light",
                             "spacing": {
                               "lg": 12,
                               "md": 8,
@@ -347,6 +353,7 @@ exports[`ArticleList Component matches the snapshot 1`] = `
                             },
                           }
                         }
+                        updateTheme={[Function]}
                       />
                       <Text
                         accessibilityRole="text"

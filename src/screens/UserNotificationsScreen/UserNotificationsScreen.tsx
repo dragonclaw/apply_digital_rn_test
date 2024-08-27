@@ -1,7 +1,7 @@
 import {Linking} from 'react-native';
 import React from 'react';
-import {Button} from '@rneui/themed';
-import {Container} from './UserNotificationsScreen.styles';
+
+import {Button} from 'react-native';
 
 const UserNotificationsScreen = () => {
   const openSettings = () => {
@@ -14,11 +14,10 @@ const UserNotificationsScreen = () => {
   };
 
   return (
-    <Container>
-      <Button onPress={openSettings}>
-        Modify your notification permissions
-      </Button>
-    </Container>
+    <Button
+      title="Modify your notification permissions"
+      onPress={openSettings}
+    />
   );
 };
 
