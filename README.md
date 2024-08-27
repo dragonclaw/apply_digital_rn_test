@@ -1,3 +1,126 @@
+## JONATHAN ROMERO APPLY DIGITAL TEST
+
+This repo has the source code for the apply digital React Native challenge. I'll post each of the features present on the application that successfully complies with the requirements needed in the challenge.
+
+In order to run this project, you need to have properly installed the environment for react native development, you can look it up a guide for your OS here:
+
+https://reactnative.dev/docs/environment-setup
+
+**Remember to have a emulator or physical device installed for your testing purposes**
+
+This project uses React Native without a framework so keep that in mind in order to select the appropiate install guide.
+
+Next, you need to clone this project using git.
+
+```bash
+git clone git@github.com:reigncl/jonathan-romero-rn-test.git
+```
+
+Aftwerwards you need to do a npm install
+
+```bash
+npm install
+```
+
+Finally you have several options to run the project, in order to run a dev environment, you can run
+
+```bash
+npm start
+```
+
+and choose the OS of your preference. For this project given that it was developed on a Windows Machine, We recommend sticking to Android only.
+
+If you need to run some unit tests, it's configured to show the code coverage already so you should not have any issues whatsoever:
+
+```bash
+npm test
+```
+
+If you need to update the snapshots, please run this command
+
+```bash
+npm test -- -u
+```
+
+Finally, if you need a fully fledged debug apk you need to run these commands
+
+Step 1: Go to the root of the project in the terminal and run the below commands:
+
+```bash
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+```
+
+Step 2: Go to android directory:
+
+```bash
+cd android
+```
+
+Step 3: Now in this android folder, run this command
+
+```bash
+./gradlew assembleDebug
+```
+
+There! you’ll find the apk file in the following path:
+yourProject/android/app/build/outputs/apk/debug/app-debug.apk
+
+Below you will find all the developed features along some screenshots:
+
+# Core Functionality
+
+**Data Fetching**: Upon startup and on pull-to-refresh, the app should fetch articles related to Android or iOS from the Hacker News Algolia API: https://hn.algolia.com/api/v1/search_by_date?query=mobile.
+
+**Offline Access**: The app must display articles downloaded during the last session when offline.
+![Alt text](https://i.ibb.co/zbVxhnp/Captura-de-pantalla-2024-08-27-033656.png)
+
+**Article Viewing**: Articles should be listed in a scrollable view, sorted by date. Tapping an article opens it in an in-app web view.
+
+![Alt text](https://i.ibb.co/vQNJvH7/Captura-de-pantalla-2024-08-27-033832.png)
+
+**Delete Functionality**: Users can swipe to delete articles from the list. Deleted articles should not reappear upon data refresh.
+
+![Alt text](https://i.ibb.co/d4pg76x/Captura-de-pantalla-2024-08-27-031635.png)
+![Alt text](https://i.ibb.co/2Yc9RsP/Captura-de-pantalla-2024-08-27-031656.png)
+
+**Enhanced Features**
+**Favorites**: Users can mark articles as favorites. These should be accessible from a dedicated favorites screen.
+
+![Alt text](https://i.ibb.co/YLjX0TG/Captura-de-pantalla-2024-08-27-031618.png)
+![Alt text](https://i.ibb.co/2jwTp4f/Captura-de-pantalla-2024-08-27-031648.png)
+
+**Deleted Articles View**: Include a screen to view articles that have been deleted.
+![Alt text](https://i.ibb.co/2Yc9RsP/Captura-de-pantalla-2024-08-27-031656.png)
+
+**Feature: Push Notifications for New Article**
+
+**Push Notification Permission**: On the first launch, the app should request permission from the user to send push notifications.
+![Alt text](https://i.ibb.co/7XGzrLH/Captura-de-pantalla-2024-08-27-032633.png)
+![Alt text](https://i.ibb.co/fGCCq7M/Captura-de-pantalla-2024-08-27-032648.png)
+
+**User Preferences**: Allow users to set preferences for the types of articles they are interested in receiving notifications about. For instance, users could choose to receive notifications only for articles related to "Android" or "iOS".
+
+**Background Fetch**: Implement a background process that periodically checks the Algolia API for new articles that match the user's preferences. If new articles are found, a push notification is sent to the user's device.
+![Alt text](https://i.ibb.co/tsv14BK/Captura-de-pantalla-2024-08-26-232820.png)
+![Alt text](https://i.ibb.co/0nhn1Tp/Captura-de-pantalla-2024-08-25-022114.png)
+
+**Notification Interaction**: When a user taps on a notification, the app should open and display the article mentioned in the notification.
+
+**Privacy and User Experience Considerations**
+Clearly communicate to the user why push notification permission is being requested and how it will enhance their experience.
+Provide users with full control over their notification preferences, including an option to disable notifications entirely.
+![Alt text](https://i.ibb.co/7XGzrLH/Captura-de-pantalla-2024-08-27-032633.png)
+![Alt text](https://i.ibb.co/fMBYGnc/Captura-de-pantalla-2024-08-27-031723.png)
+![Alt text](https://i.ibb.co/xzcL2BY/Captura-de-pantalla-2024-08-27-031710.png)
+
+---
+
+---
+
+# Leaving the original react native cli readme.md for additional info
+
+---
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
