@@ -5,6 +5,6 @@ export interface Article {
 
 export interface ArticleListProps {
   data: Article[];
-  onRefresh: () => Promise<void>;
+  onRefresh: () => void;
   shouldSwipe?: boolean;
 }

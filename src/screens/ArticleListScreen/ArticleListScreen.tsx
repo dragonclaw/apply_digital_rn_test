@@ -9,51 +9,15 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {NavigationTypes} from '../../components/CardArticleComponent/CardArticleComponent.types';
 import BackgroundFetch from 'react-native-background-fetch';
 import LoadingComponent from '../../components/LoadingComponent/LoadingComponent';
-import {compareArrays} from '../../utils/utils';
-import {Article} from '../../components/ArticleListComponent/ArticleList.types';
+import {useArticles} from '../../hooks/useArticles';
 
 const ArticleListScreen = () => {
   const navigation = useNavigation<NavigationProp<NavigationTypes>>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setError] = useState(false);
-  //TODO: need to refactor to use context
-  const [data, setData] = useState([]);
+
+  const {articlesData, isError, isLoading, fetchList, loadFromStorage} =
+    useArticles();
+
   const [isOffline, setIsOffline] = useState(false);
-
-  //TODO: need to refactor to only fetch and save into context
-  const fetchList = async () => {
-    try {
-      setIsLoading(true);
-      const articlesData = await articles.getArticles();
-      const deletedArticles = JSON.parse(
-        (await AsyncStorage.getItem('deletedArticles')) as string,
-      );
-
-      const filteredArticles = articlesData.filter((article: Article) => {
-        return !deletedArticles?.some(
-          (deletedArticle: Article) =>
-            deletedArticle.story_id === article.story_id,
-        );
-      });
-      setData(filteredArticles);
-      await AsyncStorage.setItem('articles', JSON.stringify(filteredArticles));
-      setIsLoading(false);
-    } catch (err) {
-      setIsLoading(false);
-      setError(true);
-    }
-  };
-
-  const loadFromStorage = async () => {
-    try {
-      const storedData = await AsyncStorage.getItem('articles');
-      if (storedData) {
-        setData(JSON.parse(storedData));
-      }
-    } catch (err) {
-      setError(true);
-    }
-  };
 
   useEffect(() => {
     const checkConnectivity = async () => {
@@ -66,11 +30,11 @@ const ArticleListScreen = () => {
     } else {
       loadFromStorage();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOffline]);
 
   useEffect(() => {
     initBackgroundFetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const initBackgroundFetch = async () => {
@@ -79,9 +43,26 @@ const ArticleListScreen = () => {
       console.log('[BackgroundFetch] task: ', taskId);
       console.log('THIS SHOULD BE EXECUTED IN THE BACKGROUND');
       // Do your background work...
-      const currentArticles = data;
-      const articlesData = await articles.getArticles();
-      if (!compareArrays(currentArticles, articlesData)) {
+      const currentArticles = JSON.parse(
+        (await AsyncStorage.getItem('articles')) as string,
+      );
+      console.log('CURRENT_ARTICLES', currentArticles);
+      const newArticlesData = await articles.getArticles();
+      console.log('ARTICLESDATA', newArticlesData);
+
+      const result = currentArticles.filter(
+        ({story_id}: {story_id: number}) => {
+          return !newArticlesData?.some(
+            ({story_id: new_story_id}: {story_id: number}) =>
+              new_story_id === story_id,
+          );
+        },
+      );
+
+      console.log('DIFFERENCE', result);
+
+      if (result.length !== 0) {
+        console.log('pass here first?');
         // Create a channel (required for Android)
         const channelId = await notifee.createChannel({
           id: 'default',
@@ -90,14 +71,14 @@ const ArticleListScreen = () => {
 
         // Display a notification
         await notifee.displayNotification({
-          title: articlesData[0].title,
-          body: articlesData[0].author,
+          title: newArticlesData[0].title,
+          body: newArticlesData[0].author,
           android: {
             channelId,
 
             // pressAction is needed if you want the notification to open the app when pressed
             pressAction: {
-              id: articlesData[0].url,
+              id: newArticlesData[0].url,
               launchActivity: 'default',
             },
           },
@@ -168,7 +149,7 @@ const ArticleListScreen = () => {
 
   return isLoading ? (
     <LoadingComponent />
-  ) : isError && data.length === 0 ? (
+  ) : isError && articlesData.length === 0 ? (
     // TODO: change for a error component
     <View>
       <Text>Error fetching the data</Text>
@@ -181,7 +162,11 @@ const ArticleListScreen = () => {
         </View>
       )}
 
-      <ArticleList data={data} onRefresh={fetchList} shouldSwipe={true} />
+      <ArticleList
+        data={articlesData}
+        onRefresh={fetchList}
+        shouldSwipe={true}
+      />
     </>
   );
 };

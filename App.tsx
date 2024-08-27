@@ -12,6 +12,7 @@ import DeletedArticlesScreen from './src/screens/DeletedArticlesScreen/DeletedAr
 import {PermissionsAndroid} from 'react-native';
 import notifee from '@notifee/react-native';
 import FavoritesArticlesScreen from './src/screens/FavoritesArticlesScreen/FavoritesArticlesScreen';
+import {ArticlesProvider} from './src/hooks/useArticles';
 
 const Stack = createNativeStackNavigator();
 
@@ -102,21 +103,23 @@ function Home() {
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="SingleArticleScreen"
-            component={SingleArticleScreen}
-            //TODO: need to refactor to a custom header if time permits
-            options={{title: 'Back'}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ArticlesProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="SingleArticleScreen"
+              component={SingleArticleScreen}
+              //TODO: need to refactor to a custom header if time permits
+              options={{title: 'Back'}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ArticlesProvider>
     </ThemeProvider>
   );
 }
