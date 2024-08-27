@@ -1,4 +1,3 @@
-import {Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import articles from '../../services/articles/articles';
 import ArticleList from '../../components/ArticleListComponent/ArticleList';
@@ -10,6 +9,8 @@ import {NavigationTypes} from '../../components/CardArticleComponent/CardArticle
 import BackgroundFetch from 'react-native-background-fetch';
 import LoadingComponent from '../../components/LoadingComponent/LoadingComponent';
 import {useArticles} from '../../hooks/useArticles';
+import OfflineComponent from '../../components/OfflineComponent/OfflineComponent';
+import ErrorComponent from '../../components/ErrorComponent/ErrorComponent';
 
 const ArticleListScreen = () => {
   const navigation = useNavigation<NavigationProp<NavigationTypes>>();
@@ -150,18 +151,10 @@ const ArticleListScreen = () => {
   return isLoading ? (
     <LoadingComponent />
   ) : isError && articlesData.length === 0 ? (
-    // TODO: change for a error component
-    <View>
-      <Text>Error fetching the data</Text>
-    </View>
+    <ErrorComponent />
   ) : (
     <>
-      {isOffline && (
-        <View>
-          <Text>is offline</Text>
-        </View>
-      )}
-
+      {isOffline && <OfflineComponent />}
       <ArticleList
         data={articlesData}
         onRefresh={fetchList}

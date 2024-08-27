@@ -7,5 +7,5 @@ export const LoadingComponentContainer = styled(View)`
 export const LoadingIndicator = styled(ActivityIndicator)`
   flex: 1;
   align-self: center;
-  justiy-content: center;
+  justify-content: center;
 `;

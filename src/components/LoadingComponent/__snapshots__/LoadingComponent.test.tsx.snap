@@ -5,7 +5,7 @@ exports[`LoadingComponent matches the snapshot 1`] = `
   className="sc-braxZu ccBOXj"
 >
   <ActivityIndicator
-    className="sc-gJhJTp bYcyzS"
+    className="sc-gJhJTp fSQPeg"
     color="#aaa"
     size={50}
   />

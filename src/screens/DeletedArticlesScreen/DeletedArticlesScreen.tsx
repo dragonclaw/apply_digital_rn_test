@@ -2,8 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useCallback, useState} from 'react';
 import ArticleList from '../../components/ArticleListComponent/ArticleList';
 import LoadingComponent from '../../components/LoadingComponent/LoadingComponent';
-import {View, Text} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
+import ErrorComponent from '../../components/ErrorComponent/ErrorComponent';
 
 const DeletedArticlesScreen = () => {
   const [deletedData, setDeletedData] = useState([]);
@@ -33,10 +33,7 @@ const DeletedArticlesScreen = () => {
   return isLoading ? (
     <LoadingComponent />
   ) : error && deletedData.length === 0 ? (
-    // TODO: change for a error component
-    <View>
-      <Text>Error fetching the data</Text>
-    </View>
+    <ErrorComponent />
   ) : (
     <>
       <ArticleList
