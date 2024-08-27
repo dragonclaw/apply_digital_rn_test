@@ -41,16 +41,11 @@ const ArticleListScreen = () => {
   const initBackgroundFetch = async () => {
     // BackgroundFetch event handler.
     const onEvent = async (taskId: string | undefined) => {
-      console.log('[BackgroundFetch] task: ', taskId);
-      console.log('THIS SHOULD BE EXECUTED IN THE BACKGROUND');
       // Do your background work...
       const currentArticles = JSON.parse(
         (await AsyncStorage.getItem('articles')) as string,
       );
-      console.log('CURRENT_ARTICLES', currentArticles);
       const newArticlesData = await articles.getArticles();
-      console.log('ARTICLESDATA', newArticlesData);
-
       const result = currentArticles.filter(
         ({story_id}: {story_id: number}) => {
           return !newArticlesData?.some(
@@ -59,11 +54,7 @@ const ArticleListScreen = () => {
           );
         },
       );
-
-      console.log('DIFFERENCE', result);
-
       if (result.length !== 0) {
-        console.log('pass here first?');
         // Create a channel (required for Android)
         const channelId = await notifee.createChannel({
           id: 'default',
@@ -107,44 +98,26 @@ const ArticleListScreen = () => {
   };
 
   notifee.onForegroundEvent(({type, detail}) => {
-    console.log('FOREGROUND');
-    console.log('type', type);
-    console.log('detail', detail);
-    console.log(EventType);
     if (
       type === EventType.PRESS &&
       detail.pressAction &&
       detail.pressAction.id
     ) {
-      console.log('NAVIGATION IN BACKGROUND');
       navigation.navigate('SingleArticleScreen', {
         url: detail.pressAction.id,
       });
-      console.log(
-        'User pressed an action with the id ON THE BACKGROUND: ',
-        detail.pressAction.id,
-      );
     }
   });
 
   notifee.onBackgroundEvent(async ({type, detail}) => {
-    console.log('BACKGROUND');
-    console.log('type', type);
-    console.log('detail', detail);
-    console.log(EventType);
     if (
       type === EventType.PRESS &&
       detail.pressAction &&
       detail.pressAction.id
     ) {
-      console.log('NAVIGATION IN BACKGROUND');
       navigation.navigate('SingleArticleScreen', {
         url: detail.pressAction.id,
       });
-      console.log(
-        'User pressed an action with the id ON THE BACKGROUND: ',
-        detail.pressAction.id,
-      );
     }
   });
 
