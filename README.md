@@ -71,6 +71,8 @@ Below you will find all the developed features along some screenshots:
 
 **Data Fetching**: Upon startup and on pull-to-refresh, the app should fetch articles related to Android or iOS from the Hacker News Algolia API: https://hn.algolia.com/api/v1/search_by_date?query=mobile.
 
+_Something to note is that in order to only fetch articles, decided to update the API to query for tags using only stories_
+
 **Offline Access**: The app must display articles downloaded during the last session when offline.
 ![Alt text](https://i.ibb.co/zbVxhnp/Captura-de-pantalla-2024-08-27-033656.png)
 
